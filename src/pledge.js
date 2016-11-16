@@ -5,15 +5,21 @@ Promises Workshop: build the pledge.js deferral-style promise library
 // YOUR CODE HERE:
 
 let $Promise = function () {
-
+	this._state = "pending"
 }
 
 let Deferral = function () {
-	this.$promise = new $Promise;
+	this.$promise = new $Promise;	
+
+}
+
+Deferral.prototype.resolve = function () {
+	this._state = 'fufilled'
 }
 
 let defer = function() {
 	return new Deferral;
+
 }
 
 
