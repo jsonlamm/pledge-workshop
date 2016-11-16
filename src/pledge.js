@@ -21,7 +21,7 @@ $Promise.prototype.then = function( s1, e1 ) {
 		successCb: s1,
 		errorCb: e1
 	})
-	return this.callHandlers();
+	this.callHandlers();
 }
 
 $Promise.prototype.callHandlers = function() {
@@ -37,7 +37,7 @@ if(this._state === "pending") {return}
 
 	// this._handlerGroups = []
 
-	
+
 // 		var result = this._handlerGroups[0].successCb(this._value);
 // 		// this._handlerGroups.shift()
 // 		return result;
