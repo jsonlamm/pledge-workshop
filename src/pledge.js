@@ -8,13 +8,31 @@ let $Promise = function () {
 	this._state = "pending"
 }
 
+// $Promise = Deferral = defer()
 let Deferral = function () {
 	this.$promise = new $Promise;	
 
 }
 
-Deferral.prototype.resolve = function () {
-	this._state = 'fufilled'
+Deferral.prototype.resolve = function (data) {
+	// this._state = 'fufilled'
+	if (this.$promise._state === "pending" && this.$promise._state !== "rejected") {
+		this.$promise._value = data
+		this.$promise._state = 'fulfilled'
+	}
+	
+	
+}
+
+Deferral.prototype.reject = function (data) {
+	// this._state = 'fufilled'
+	
+	if (this.$promise._state !== 'rejected' && this.$promise._state !== 'fulfilled') {
+		this.$promise._value = data
+		this.$promise._state = 'rejected'
+	}
+
+		
 }
 
 let defer = function() {
