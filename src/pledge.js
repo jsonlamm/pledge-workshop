@@ -21,13 +21,13 @@ $Promise.prototype.then = function( s1, e1 ) {
 		successCb: s1,
 		errorCb: e1
 	})
-
-	this.callHandlers();
+	return this.callHandlers();
 }
 
 $Promise.prototype.callHandlers = function() {
-	if (this.$promise && this.$promise._state === "fulfilled") {
-		return this.$promise._handlerGroups[0].successCb();	
+	if (this._state === "fulfilled") {
+		var result = this._handlerGroups.shift().successCb(this._value);
+		return result;
 	}
 }
 
@@ -44,7 +44,7 @@ Deferral.prototype.resolve = function (data) {
 		this.$promise._state = 'fulfilled'
 	}
 	
-	
+// this.$promise.callHandlers()	
 }
 
 Deferral.prototype.reject = function (data) {
@@ -55,7 +55,7 @@ Deferral.prototype.reject = function (data) {
 		this.$promise._state = 'rejected'
 	}
 
-		
+// this.$Promise.callHandlers()		
 }
 
 let defer = function() {
