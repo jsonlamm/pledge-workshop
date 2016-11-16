@@ -4,8 +4,17 @@ Promises Workshop: build the pledge.js deferral-style promise library
 ----------------------------------------------------------------*/
 // YOUR CODE HERE:
 
+let $Promise = function () {
 
+}
 
+let Deferral = function () {
+	this.$promise = new $Promise;
+}
+
+let defer = function() {
+	return new Deferral;
+}
 
 
 
